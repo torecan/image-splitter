@@ -96,8 +96,8 @@ void NorthDivider(IplImage*img) {
 
 	char outname[200];
 
-	cvSetImageROI(img, cvRect(0, 0, a4_left[0], a4_left[1]));
-	cvSetImageROI(imgnord, cvRect(0, 0, a4_left[0], a4_left[1]));
+	cvSetImageROI(img, cvRect(0, 0, nord_right[0], nord_right[1]));
+	cvSetImageROI(imgnord, cvRect(0, 0, nord_right[0], nord_right[1]));
 
 	cvCopy(img, imgnord, NULL);
 
