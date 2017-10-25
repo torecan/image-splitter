@@ -1,0 +1,146 @@
+/*
+STUDIO VISION IMAGE/VIDEO/IMAGE FOR SOUTH AND NORTH SCREENS
+MÜNCHEN 2017
+TÖRECAN CELIK
+*/
+
+#include "opencv\cv.h"
+#include "opencv\highgui.h"
+#include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#include <ctype.h>
+#include <direct.h>
+
+using namespace cv;
+using namespace std;
+
+IplImage* capturer;
+IplImage* img;
+IplImage* img1;
+IplImage* img2;
+IplImage* img3;
+
+IplImage* resizer;
+
+char orginalname[200];
+char filename[200];
+char fullname[200];
+char dirname[200];
+char ext[1];
+
+
+int a1_right[2] = { 1440,192 };
+int a1_left[2] = { 1536,192 };
+
+int a4_right[2] = { 1184,192 };
+int a4_left[2] = { 1152,192 };
+
+int nord_right[2] = { 1184,192 };
+
+
+int width, height;
+
+void A1Divider(IplImage*imge) {
+
+
+	cvSetImageROI(imge, cvRect(0, 0, 2291, 192));
+	cvSetImageROI(img1, cvRect(0, 0, 2291, 192));
+
+	cvCopy(imge, img1, NULL);
+
+	cvResetImageROI(imge);
+	cvResetImageROI(img1);
+
+	cvSaveImage("C://Users//t.celik//Desktop//img1.png", img1);
+
+	cvSetImageROI(imge, cvRect(2292, 0, 480, 192));
+	cvSetImageROI(img2, cvRect(0, 0, 480, 192));
+
+	cvCopy(imge, img2, NULL);
+
+	cvResetImageROI(imge);
+	cvResetImageROI(img2);
+
+	cvSaveImage("C://Users//t.celik//Desktop//img2.png", img2);
+
+	cvSetImageROI(imge, cvRect(2771, 0, 192, 192));
+	cvSetImageROI(img3, cvRect(0, 0, 192, 192));
+
+	cvCopy(imge, img3, NULL);
+
+	cvResetImageROI(imge);
+	cvResetImageROI(img3);
+
+	cvSaveImage("C://Users//t.celik//Desktop//img3.png", img3);
+
+
+}
+
+
+
+
+
+int main(int argc, char** argv) {
+
+	//cvNamedWindow("xample2", CV_WINDOW_AUTOSIZE);
+	//	CvCapture* capture = cvCreateFileCapture("C://Users//t.celik//Desktop//Eingang_Sued_A1_2976x192_AufWiedersehen.jpg");
+
+	//img = cvQueryFrame(capture);
+
+	img = cvLoadImage("C://Users//t.celik//Desktop//Eingang_Sued_A1_2976x192_AufWiedersehen.jpg");
+
+	cout << img->height << img->width;
+
+	img1 = cvCreateImage(cvSize(2291, 192), img->depth, 3);
+	img2 = cvCreateImage(cvSize(480, 192), img->depth, 3);
+	img3 = cvCreateImage(cvSize(192, 192), img->depth, 3);
+
+	A1Divider(img);
+
+	cvShowImage("xample3", img1);
+	cvWaitKey();
+
+
+
+	/*
+
+
+	capturer = cvCreateImage(cvSize(2976, 192), img->depth, img->nChannels);
+
+	CvVideoWriter *writer = cvCreateVideoWriter(
+		"C://Users//t.celik//Desktop//write2r.avi",
+		CV_FOURCC('M', 'J', 'P', 'G'),
+		20,
+		cvSize(final_out->width, final_out->height));
+
+
+	int r_wid = (2976 - (img1->width + img2->width));
+
+	resizer = cvCreateImage(cvSize(r_wid, 192), img->depth, img->nChannels);
+
+	//	cout << resizer->width << resizer->height;
+
+	while (1) {
+
+		img = cvQueryFrame(capture);
+		if (!img) break;
+
+		cvResize(img, resizer);
+		Combiner();
+		A1Divider(capturer);
+		//	char c = cvWaitKey(33);
+		//	if (c == 27) break;
+		//	cvShowImage("xample3", final_out);
+
+		cvWriteFrame(writer, final_out);
+
+	}
+
+	cvReleaseImage(&img1);
+	cvReleaseImage(&img2);
+	cvReleaseVideoWriter(&writer);
+	cvReleaseCapture(&capture);
+	cvDestroyWindow("xample2");
+	*/
+}
